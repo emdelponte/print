@@ -5,7 +5,7 @@ output:
     orientation: rows
     theme: 
       version: 4
-      bootswatch: bootstrap
+      bootswatch: united
 ---
 
 
@@ -24,6 +24,10 @@ Sys.setlocale("LC_ALL", "pt_BR.UTF-8")
 
 dat1 <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1mi4rkT8qr3b-5JlB4ZF9TNE6N3AKWjlLlZ2UqOVYkGw/edit?usp=sharing")
 
+
+set.seed(1000)
+dat1$Latitude <- round(jitter(dat1$Latitude, factor = 1, amount = 0.1), 4)
+dat1$Longitude <- round(jitter(dat1$Longitude, factor = 1, amount = 0.1), 4)
 
 sd <- SharedData$new(dat1)
 ```
@@ -52,6 +56,17 @@ Row {.tabset .tabset-fade}
 ### Mapa de missões
     
 ```{r}
+
+
+library(RColorBrewer)
+library(htmltools)
+pal <- colorFactor("Set2", domain = c("Missão Institucional", 
+                                      "Missão individual",
+                                      "Bolsa PDSE",
+                                      "Bolsa PVE Júnior",
+                                      "Bolsa PVE Sênior"))
+
+
 leaflet(data = sd, width = "100%") %>%
   setView(-1, -1, zoom = 2) %>%
   addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -67,9 +82,11 @@ leaflet(data = sd, width = "100%") %>%
   addCircleMarkers(
   
     radius = 6,
-    fillOpacity = 0.6,
+    group = "Tipo",
+    fillOpacity = 0.9,
     weight = 0.5,
-    color = "red",
+    color = "white",
+     fillColor = ~ pal(Tipo),
     label = paste(dat1$Nome, "+ informações"),
   
     
@@ -85,6 +102,14 @@ leaflet(data = sd, width = "100%") %>%
       )
 
   ) %>%
+
+  addLegend("bottomleft",
+    pal = pal,
+    values = ~Tipo,
+    title = "Tipo de missão",
+    opacity = 1)%>%
+    
+ 
 
   addEasyButton(easyButton(
     icon="fa-globe", title="Zoom to Level 2",
