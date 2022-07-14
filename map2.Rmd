@@ -1,0 +1,126 @@
+---
+title: "Missões PrInt UFV"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme: 
+      version: 4
+      bootswatch: united
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(gsheet)
+library(tidyverse)
+library(crosstalk)
+library(DT)
+library(plotly)
+library(RColorBrewer)
+library(htmltools)
+library(leaflet)
+
+Sys.setlocale("LC_ALL", "pt_BR.UTF-8")
+
+dat1 <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1mi4rkT8qr3b-5JlB4ZF9TNE6N3AKWjlLlZ2UqOVYkGw/edit?usp=sharing")
+
+
+sd <- SharedData$new(dat1)
+```
+
+
+
+Inputs {.sidebar}
+-------------------------------------
+
+```{r}
+
+  filter_slider("Ano", "Ano da missão", sd, ~ano, round = TRUE)
+  
+  filter_select("Tipo de Missão", "Tipo de Missão", sd, ~Tipo, multiple = TRUE)
+  filter_select("País", "País", sd, ~País, multiple = TRUE)
+   filter_select("Tema", "Tema", sd, ~tema, multiple = TRUE)
+   filter_select("Projeto", "Projeto", sd, ~projeto, multiple = TRUE)
+```
+
+
+Row {.tabset .tabset-fade}
+-------------------------------------
+    
+### Mapa de missões
+    
+
+
+
+
+```{r}
+
+
+
+
+
+
+
+leaflet(data = sd, width = "100%") %>%
+  setView(-1, -1, zoom = 2) %>%
+  addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
+  addProviderTiles("OpenTopoMap", group = "Terrain") %>%
+  addScaleBar("bottomright") %>%
+  addProviderTiles(providers$CartoDB.Voyager, group = "Default") %>%
+  addLayersControl(
+    baseGroups = c("Default", "Aerial", "Terrain"),
+    
+    options = layersControlOptions(collapsed = T)
+  ) %>%
+  
+  addCircleMarkers(
+  
+    radius = 6,
+    fillOpacity = 0.6,
+    weight = 0.5,
+    color = "red",
+    label = paste(dat1$Nome, "+ informações"),
+  
+    
+    popup = paste(
+      "<h3>Informações sobre a missão</h3>",
+      "Tipo:", dat1$"Tipo", "<br>",
+      "Tema:", dat1$"tema", "<br>",
+       "Local:", dat1$"Local", "<br>",
+       "País:", dat1$"País", "<br>",
+       "Data:", dat1$"data_ida", "<br>",
+       "Instituição:", dat1$"instituição", "<br>",
+       "Participantes:", dat1$"participantes", "<br>"
+      )
+
+  ) %>%
+
+  addEasyButton(easyButton(
+    icon="fa-globe", title="Zoom to Level 2",
+    onClick=JS("function(btn, map){ map.setZoom(2); }"))) 
+
+
+
+```
+   
+
+### Informações sobre as missões
+
+```{r}
+dat2 <- dat1 |> 
+  select(Tipo, tema, instituição, Local, País, ano, data_ida, participantes)
+sd2 <- SharedData$new(dat2)
+
+
+ datatable(sd, 
+           escape = FALSE,
+           rownames = FALSE,
+           extensions = c("Buttons"),
+             class = 'table-bordered table-condensed',
+           options = list(
+              pageLength = 8,
+    dom = "Bfrtip", buttons = c("excel")))
+
+
+```   
+ 
