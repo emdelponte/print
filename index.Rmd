@@ -49,25 +49,9 @@ Inputs {.sidebar}
 Row {.tabset .tabset-fade}
 -------------------------------------
     
-    
-
-    
-    
 ### Mapa de missões
     
-
-
-
-
-
 ```{r}
-
-
-
-
-
-
-
 leaflet(data = sd, width = "100%") %>%
   setView(-1, -1, zoom = 2) %>%
   addProviderTiles("Esri.WorldImagery", group = "Aerial") %>%
@@ -131,4 +115,8 @@ sd2 <- SharedData$new(dat2)
 
 ```   
  
+
+
+
+
 
