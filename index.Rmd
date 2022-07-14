@@ -83,7 +83,7 @@ leaflet(data = sd, width = "100%") %>%
   
     
     popup = paste(
-      "<h3>Informações sobre a missão</h3>",
+      "<h3>Sobre a missão</h3>",
       "Tipo:", dat1$"Tipo", "<br>",
       "Tema:", dat1$"tema", "<br>",
        "Local:", dat1$"Local", "<br>",
