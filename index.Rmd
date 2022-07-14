@@ -5,7 +5,7 @@ output:
     orientation: rows
     theme: 
       version: 4
-      bootswatch: united
+      bootswatch: bootstrap
 ---
 
 
@@ -32,6 +32,8 @@ sd <- SharedData$new(dat1)
 
 Inputs {.sidebar}
 -------------------------------------
+
+### Filtros
 
 ```{r}
 
@@ -118,7 +120,7 @@ sd2 <- SharedData$new(dat2)
            extensions = c("Buttons"),
              class = 'table-bordered table-condensed',
            options = list(
-              pageLength = 8,
+              pageLength = 20,
     dom = "Bfrtip", buttons = c("excel")))
 
 
