@@ -49,8 +49,13 @@ Inputs {.sidebar}
 Row {.tabset .tabset-fade}
 -------------------------------------
     
+    
+
+    
+    
 ### Mapa de missões
     
+
 
 
 
@@ -126,3 +131,4 @@ sd2 <- SharedData$new(dat2)
 
 ```   
  
+
