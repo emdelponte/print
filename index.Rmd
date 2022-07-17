@@ -81,7 +81,7 @@ leaflet(data = sd, width = "100%") %>%
   
   addCircleMarkers(
   
-    radius = 6,
+    radius = 8,
     group = "Tipo",
     fillOpacity = 0.9,
     weight = 0.5,
