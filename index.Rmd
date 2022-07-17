@@ -54,10 +54,9 @@ Inputs {.sidebar}
 Row {.tabset .tabset-fade}
 -------------------------------------
     
-### <i class="fa-solid fa-map"></i> Mapa de missões
+### <i class="fa fa-map" aria-hidden="true"></i> Mapa de missões
     
 ```{r}
-
 
 library(RColorBrewer)
 library(htmltools)
@@ -121,7 +120,7 @@ leaflet(data = sd, width = "100%") %>%
 ```
    
 
-### Informações sobre as missões
+### <i class="fa fa-table" aria-hidden="true"></i> Dados sobre as missões
 
 ```{r}
 dat2 <- dat1 |> 
@@ -143,7 +142,7 @@ sd2 <- SharedData$new(dat2)
  
 
 
-### Visitas por país
+### <i class="fa fa-chart" aria-hidden="true"></i> Visitas por país
 
 ```{r}
 p2 <- dat1 |> 
@@ -151,7 +150,8 @@ p2 <- dat1 |>
   ggplot(aes(País, n, fill = Tipo))+
   geom_col()+
   labs(y = "Número de locais visitados")+
-  theme_light()
+  theme_light()+
+  scale_fill_brewer(palette = "Set2")
 ggplotly(p2)
 ```
 
