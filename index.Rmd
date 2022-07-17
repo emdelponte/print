@@ -54,7 +54,7 @@ Inputs {.sidebar}
 Row {.tabset .tabset-fade}
 -------------------------------------
     
-### Mapa de missões
+### <i class="fa-solid fa-map"></i> Mapa de missões
     
 ```{r}
 
@@ -141,6 +141,20 @@ sd2 <- SharedData$new(dat2)
 
 ```   
  
+
+
+### Visitas por país
+
+```{r}
+p2 <- dat1 |> 
+  count(Tipo, País) |> 
+  ggplot(aes(País, n, fill = Tipo))+
+  geom_col()+
+  labs(y = "Número de locais visitados")+
+  theme_light()
+ggplotly(p2)
+```
+
 
 
 
