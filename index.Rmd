@@ -1,5 +1,5 @@
 ---
-title: "Missões PrInt UFV"
+title: "Missões do Programa de Internacionalização (PrInt) UFV"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
