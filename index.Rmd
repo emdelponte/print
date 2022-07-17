@@ -142,13 +142,14 @@ sd2 <- SharedData$new(dat2)
  
 
 
-### <i class="fa fa-chart" aria-hidden="true"></i> Visitas por país
+### <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitas por país
 
 ```{r}
 p2 <- dat1 |> 
   count(Tipo, País) |> 
   ggplot(aes(País, n, fill = Tipo))+
   geom_col()+
+  coord_flip()+
   labs(y = "Número de locais visitados")+
   theme_light()+
   scale_fill_brewer(palette = "Set2")
@@ -156,6 +157,22 @@ ggplotly(p2)
 ```
 
 
+
+### <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitas por Temas
+
+
+```{r}
+p2 <- dat1 |> 
+  count(Tipo, tema) |> 
+  filter(tema != "Todos os temas") |> 
+  ggplot(aes(tema, n, fill = Tipo))+
+  geom_col()+
+  labs(y = "Número de locais visitados", x = "")+
+  theme_light()+
+  coord_flip()+
+  scale_fill_brewer(palette = "Set2")
+ggplotly(p2)
+```
 
 
 
