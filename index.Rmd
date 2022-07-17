@@ -43,7 +43,7 @@ Inputs {.sidebar}
 
   filter_slider("Ano", "Ano da missão", sd, ~ano, round = TRUE)
   
-  filter_select("Tipo de Missão", "Tipo de Missão", sd, ~Tipo, multiple = TRUE)
+  filter_select("Tipo de missão", "Tipo de missão", sd, ~Tipo, multiple = TRUE)
    filter_select("Nome da missão", "Nome da missão institucional", sd, ~missao_nome, multiple = TRUE)
   filter_select("País", "País", sd, ~País, multiple = TRUE)
    filter_select("Tema", "Tema", sd, ~tema, multiple = TRUE)
