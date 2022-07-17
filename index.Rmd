@@ -150,7 +150,7 @@ p2 <- dat1 |>
   ggplot(aes(País, n, fill = Tipo))+
   geom_col()+
   coord_flip()+
-  labs(y = "Número de locais visitados")+
+  labs(y = "Número de locais visitados", x = "")+
   theme_light()+
   scale_fill_brewer(palette = "Set2")
 ggplotly(p2)
