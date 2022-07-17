@@ -60,7 +60,7 @@ Row {.tabset .tabset-fade}
 
 library(RColorBrewer)
 library(htmltools)
-pal <- colorFactor("Set2", domain = c("Missão Institucional", 
+pal <- colorFactor("Set2", domain = c("Missão institucional", 
                                       "Missão individual",
                                       "Bolsa PDSE",
                                       "Bolsa PVE Júnior",
@@ -86,7 +86,7 @@ leaflet(data = sd, width = "100%") %>%
     fillOpacity = 0.9,
     weight = 0.5,
     color = "white",
-     fillColor = ~ pal(Tipo),
+     fillColor = ~pal(Tipo),
     label = paste(dat1$Nome, "+ informações"),
   
     
