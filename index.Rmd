@@ -83,7 +83,7 @@ leaflet(data = sd, width = "100%") %>%
   
     radius = 8,
     group = "Tipo",
-    fillOpacity = 0.9,
+    fillOpacity = 0.7,
     weight = 0.5,
     color = "white",
      fillColor = ~pal(Tipo),
