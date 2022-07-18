@@ -173,18 +173,19 @@ ggplotly(p2)
 
 
 
-### <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitas por Temas
+
+### <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitas por Ano
 
 
 ```{r}
 p2 <- dat1 |> 
-  count(Tipo, tema) |> 
-  filter(tema != "Todos os temas") |> 
-  ggplot(aes(tema, n, fill = Tipo))+
+  filter(tema != "Todos os temas") |>
+   count(Tipo, ano) |> 
+  ggplot(aes(ano, n, fill = Tipo))+
   geom_col()+
-  labs(y = "Número de locais visitados", x = "")+
+  labs(y = "Número de locais visitados", x = "Ano de saída da missão")+
   theme_light()+
-  coord_flip()+
+
   scale_fill_brewer(palette = "Set2")
 ggplotly(p2)
 ```
