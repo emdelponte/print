@@ -180,7 +180,6 @@ ggplotly(p2)
 p3 <- dat1 |> 
    count(Tipo, tema) |> 
   filter(tema != "Todos os temas") |>
-  
   ggplot(aes(tema, n, fill = Tipo))+
   geom_col()+
   labs(y = "Número de locais visitados", x = "")+
