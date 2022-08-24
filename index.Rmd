@@ -33,6 +33,9 @@ sd <- SharedData$new(dat1)
 ```
 
 
+Geographic map
+=====================================
+
 
 Inputs {.sidebar}
 -------------------------------------
@@ -209,5 +212,10 @@ ggplotly(p2)
 ```
 
 
+
+Interactive network of projects
+=====================================
+
+<iframe src="https://embed.kumu.io/2b653ac50edee30802aedd7d893a1911" width="100%" height="100%" frameborder="0"></iframe>
 
 
